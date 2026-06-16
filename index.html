@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美少女戰士 Cosplay 提示詞集</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #fef6fb;
+    --card-bg: #ffffff;
+    --text: #2c2c3e;
+    --muted: #7a7a8c;
+    --border: #e8d8e8;
+    --shadow: 0 2px 12px rgba(150, 100, 180, 0.08);
+    --shadow-hover: 0 4px 20px rgba(150, 100, 180, 0.15);
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+                 "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    background: linear-gradient(135deg, #fef6fb 0%, #f0e8ff 100%);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  header {
+    text-align: center;
+    padding: 30px 20px 20px;
+    margin-bottom: 24px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+    background: linear-gradient(90deg, #ff6b9d, #c44ddb, #4a90e2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  header p {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* 快速導覽列 */
+  .quick-nav {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 16px 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 32px;
+    position: sticky;
+    top: 12px;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .quick-nav-title {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .nav-links a {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .nav-links a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  /* 各角色顏色 */
+  .nav-moon     { background: linear-gradient(135deg, #4a90e2, #e74c3c); }
+  .nav-chibi    { background: linear-gradient(135deg, #f4a4c0, #ff6b9d); }
+  .nav-mercury  { background: linear-gradient(135deg, #5dade2, #2874a6); }
+  .nav-mars     { background: linear-gradient(135deg, #c0392b, #8e44ad); }
+  .nav-venus    { background: linear-gradient(135deg, #f39c12, #e67e22); }
+  .nav-jupiter  { background: linear-gradient(135deg, #58d68d, #229954); }
+  .nav-saturn   { background: linear-gradient(135deg, #8e44ad, #4a235a); }
+  .nav-neptune  { background: linear-gradient(135deg, #48c9b0, #16a085); }
+  .nav-pluto    { background: linear-gradient(135deg, #5d4037, #8b3a3a); }
+  .nav-uranus   { background: linear-gradient(135deg, #d4af37, #1a3a6c); }
+
+  /* 角色卡片 */
+  .card {
+    background: var(--card-bg);
+    border-radius: 18px;
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    border-left: 6px solid;
+    transition: box-shadow 0.2s;
+    scroll-margin-top: 100px;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  .card-moon     { border-color: #4a90e2; }
+  .card-chibi    { border-color: #f4a4c0; }
+  .card-mercury  { border-color: #5dade2; }
+  .card-mars     { border-color: #c0392b; }
+  .card-venus    { border-color: #f39c12; }
+  .card-jupiter  { border-color: #58d68d; }
+  .card-saturn   { border-color: #8e44ad; }
+  .card-neptune  { border-color: #48c9b0; }
+  .card-pluto    { border-color: #5d4037; }
+  .card-uranus   { border-color: #d4af37; }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card-subtitle {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .copy-btn {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .copy-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  }
+
+  .copy-btn:active {
+    transform: translateY(0);
+  }
+
+  .copy-btn.copied {
+    background: linear-gradient(135deg, #11998e, #38ef7d);
+  }
+
+  .prompt-content {
+    background: #faf8fc;
+    border-radius: 12px;
+    padding: 20px;
+    font-size: 0.95rem;
+    color: #3a3a4e;
+    white-space: pre-wrap;
+    line-height: 1.85;
+    border: 1px solid #f0e8f5;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+
+  .prompt-content::-webkit-scrollbar { width: 6px; }
+  .prompt-content::-webkit-scrollbar-track { background: transparent; }
+  .prompt-content::-webkit-scrollbar-thumb {
+    background: #d8c8e0;
+    border-radius: 3px;
+  }
+
+  /* 回到頂端 */
+  .back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.15s;
+    z-index: 100;
+  }
+
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .back-to-top:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Toast 提示 */
+  .toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: rgba(40, 40, 60, 0.95);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 0.9rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 200;
+    pointer-events: none;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.5rem; }
+    .card { padding: 20px; }
+    .card-title { font-size: 1.25rem; }
+    .quick-nav { padding: 12px 14px; }
+    .nav-links a { font-size: 0.8rem; padding: 5px 11px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>🌙 美少女戰士 Cosplay 提示詞集</h1>
+    <p>真人 × 動畫跨次元自拍 · 9:16 直幅 · 點按鈕直接複製</p>
+  </header>
+
+  <!-- 快速導覽 -->
+  <nav class="quick-nav">
+    <div class="quick-nav-title">⚡ 快速跳轉</div>
+    <div class="nav-links">
+      <a href="#moon"    class="nav-moon">月野兔</a>
+      <a href="#chibi"   class="nav-chibi">小小兔</a>
+      <a href="#mercury" class="nav-mercury">水星</a>
+      <a href="#mars"    class="nav-mars">火星</a>
+      <a href="#venus"   class="nav-venus">金星</a>
+      <a href="#jupiter" class="nav-jupiter">木星</a>
+      <a href="#saturn"  class="nav-saturn">土星</a>
+      <a href="#neptune" class="nav-neptune">海王星</a>
+      <a href="#pluto"   class="nav-pluto">冥王星</a>
+      <a href="#uranus"  class="nav-uranus">天王星</a>
+    </div>
+  </nav>
+
+  <!-- 月野兔 -->
+  <section id="moon" class="card card-moon">
+    <div class="card-header">
+      <div>
+        <div class="card-title">🌙 月野兔 <span class="card-subtitle">Sailor Moon</span></div>
+      </div>
+      <button class="copy-btn" data-target="prompt-moon">📋 複製提示詞</button>
+    </div>
+    <div class="prompt-content" id="prompt-moon">以我上傳照片中的人物為唯一人物參考，保留原本五官、臉型、眼型、妝感、身形比例與整體本人感，不要美化，不要變成另一個人。
+
+人物穿著《美少女戰士》水手月亮經典 Cosplay 服裝：白藍色水手服、紅色胸前蝴蝶結、白色長手套、紅色膝上長靴。配戴符合角色設定的雙包包頭長馬尾明亮金黃色假髮；配戴金色月亮皇冠髮飾（中央紅色寶石）、耳垂小型金色環形耳環。脖子上配戴紅色頸帶，頸帶正中央有清楚可見的金色新月月亮裝飾，不可省略
+
+背景是真實日本街景，類似東京澀谷、原宿或秋葉原街道。可見商店招牌、斑馬線、街燈、行人與都市街景元素，整體保持真實街拍氛圍，不要奇幻宮殿或魔法場景。
+
+人物身旁出現一位原作動畫風格的水手月亮角色。維持 1990 年代經典動畫風格、2D 賽璐璐上色、清楚線稿、鮮明色彩。她必須是動畫角色，不是真人，不是真實 Cosplayer，不是寫實人物。
+
+真人人物拿著手機自拍，動畫水手月亮自然靠近鏡頭，兩人臉靠近一起入鏡。真人人物露出自然開朗笑容，動畫水手月亮開心比出招牌月亮手勢，呈現跨次元好友自拍的感覺。
+
+超寫實街拍攝影、自然膚質、真實光影、高細節服裝與配件、淺景深、社群短影音封面感、9:16 直幅構圖、高品質攝影。
+
+旁邊的水手月亮必須保持動畫角色外觀，不能真人化。</div>
+  </section>
+
+  <!-- 小小兔 -->
+  <section id="chibi" class="card card-chibi">
+    <div class="card-header">
+      <div>
+        <div class="card-title">🎀 小小兔 <span class="card-subtitle">Sailor Chibi Moon</span></div>
+      </div>
+      <button class="copy-btn" data-target="prompt-chibi">📋 複製提示詞</button>
+    </div>
+    <div class="prompt-content" id="prompt-chibi">以我上傳照片中的人物為唯一人物參考。臉部相似度是最高優先，角色還原度其次。
+
+必須完全保留原本五官、眼距、眼型、鼻型、嘴型、臉型、下顎線條、眉型、妝感、膚質與整體本人辨識度。只允許更換 Cosplay 服裝、頭飾與角色假髮，不得改變臉部結構，不得套用 AI 美女臉，不得年輕化，不得變成另一個人。
+
+人物穿著《美少女戰士》水手小小兔經典 Cosplay 服裝：白粉色水手服、粉紅色胸前蝴蝶結、粉紅色短裙、白色長手套、粉紅色長靴。配戴符合角色設定的粉紅色雙包包頭長馬尾假髮、金色 Tiara 頭冠（中央紅色寶石）、小型粉色耳飾。
+
+背景是真實日本街景，類似東京原宿、竹下通或可愛風商店街。可見粉色招牌、甜點店、街燈、行人與都市街景元素，整體保持真實街拍氛圍。
+
+人物身旁出現一位原作動畫風格的水手小小兔角色，維持 1990 年代經典動畫風格、2D 賽璐璐上色、清楚線稿、原作配色。她必須是動畫角色，不是真人，不是真實 Cosplayer。
+
+真人人物伸手拿著手機自拍。動畫小小兔從人物肩膀旁邊探出頭來，自然抱著人物手臂，頭靠近人物肩膀。動畫小小兔抱著人物手臂並揮手，動畫小小兔開心大笑，真人人物露出寵溺又自然的笑容，呈現姊妹般的跨次元自拍氛圍。
+
+動畫角色必須像真實好友一樣參與自拍互動，不是站在旁邊被後製貼上的角色。真人與動畫角色共享相同光線方向、相同環境光與相同鏡頭透視。
+
+超寫實街拍攝影、自然膚質、高細節服裝、日系街頭自拍感、社群短影音封面感、9:16 直幅、高品質攝影。</div>
+  </section>
+
+  <!-- 水星 -->
+  <section id="mercury" class="card card-mercury">
+    <div class="card-header">
+      <div>
+        <div class="card-title">💧 水星 <span class="card-subtitle">Sailor Mercury</span></div>
+      </div>
+      <button class="copy-btn" data-target="prompt-mercury">📋 複製提示詞</button>
+    </div>
+    <div class="prompt-content" id="prompt-mercury">以我上傳照片中的人物為唯一人物參考，保留原本五官、臉型、眼型、妝感、身形比例與整體本人感，不要美化，不要變成另一個人。
+
+人物穿著《美少女戰士》水手水星經典 Cosplay 服裝：白藍色水手服、深藍色水手領、藍色胸前蝴蝶結、藍色短裙、白色長手套、藍色短靴。配戴符合角色設定的深藍色短髮假髮、藍色耳釘。
+
+背景是真實日本街景，類似東京神保町、銀座或表參道街道。可見商店招牌、書店櫥窗、街燈、行人與都市街景元素，整體保持自然寫實街拍氛圍。
+
+人物身旁出現一位原作動畫風格的水手水星角色。維持 1990 年代經典動畫風格、2D 賽璐璐上色、清楚線稿，不是真人、不是真實 Cosplayer。
+
+真人人物拿著手機自拍，動畫水星微笑靠近鏡頭並比出 YA 手勢，兩人自然靠近一起入鏡，呈現溫柔聰明的好友自拍感。
+
+真人與 2D 動畫角色自然同框，超寫實街拍攝影結合動畫角色，日系街頭自拍感，社群短影音封面感，9:16 直幅，高細節。</div>
+  </section>
+
+  <!-- 火星 -->
+  <section id="mars" class="card card-mars">
+    <div class="card-header">
+      <div>
+        <div class="card-title">🔥 火星 <span class="card-subtitle">Sailor Mars</span></div>
+      </div>
+      <button class="copy-btn" data-target="prompt-mars">📋 複製提示詞</button>
+    </div>
+    <div class="prompt-content" id="prompt-mars">以我上傳照片中的人物為唯一人物參考，保留原本五官、臉型、眼型、妝感、身形比例與整體本人感，不要美化，不要變成另一個人。
+
+人物穿著《美少女戰士》水手火星經典 Cosplay 服裝：白色上衣、紅色水手裙、紫色胸前蝴蝶結、紅色高跟鞋、白色長手套。配戴符合角色設定的深紫黑色長直髮假髮、紅色五角星耳環，紫色 Tiara 頭冠（中央紅色寶石。
+
+背景是真實日本街景，類似京都神社周邊商店街、淺草寺周邊街道或日式老街。可見燈籠、鳥居、商店招牌與往來遊客，保持真實街景氛圍。
+
+人物身旁出現一位原作動畫風格的水手火星角色。維持 1990 年代經典動畫風格、2D 賽璐璐上色、清楚線稿，不是真人、不是真實 Cosplayer。
+
+真人人物拿著手機自拍，動畫火星優雅撥動長髮並自信看向鏡頭，兩人自然靠近一起入鏡，呈現成熟優雅又帶點女王感的自拍氛圍。
+
+真人與 2D 動畫角色自然同框，超寫實街拍攝影結合動畫角色，日系街頭自拍感，社群短影音封面感，9:16 直幅，高細節。</div>
+  </section>
+
+  <!-- 金星 -->
+  <section id="venus" class="card card-venus">
+    <div class="card-header">
+      <div>
+        <div class="card-title">💛 金星 <span class="card-subtitle">Sailor Venus</span></div>
+      </div>
+      <button class="copy-btn" data-target="prompt-venus">📋 複製提示詞</button>
+    </div>
+    <div class="prompt-content" id="prompt-venus">以我上傳照片中的人物為唯一人物參考，保留原本五官、臉型、眼型、妝感、身形比例與整體本人感，不要美化，不要變成另一個人。
+
+人物穿著《美少女戰士》水手金星經典 Cosplay 服裝：白橘色水手服、深藍色胸前蝴蝶結、橘色短裙、橘色高跟鞋、白色長手套。配戴符合角色設定的金色長髮假髮、紅色大蝴蝶結髮飾、橘黃色 Tiara 頭冠（中央藍色寶石）、小型金色耳環。
+
+背景是真實日本街景，類似東京澀谷、原宿或表參道商圈。可見大型看板、時尚店面、街燈與人潮，充滿流行都市感。
+
+人物身旁出現一位原作動畫風格的水手金星角色。維持 1990 年代經典動畫風格、2D 賽璐璐上色、清楚線稿，不是真人、不是真實 Cosplayer。
+
+真人人物拿著手機自拍，動畫金星開心眨眼並對鏡頭飛吻，兩人自然靠近一起入鏡，呈現偶像明星般的自拍氛圍。
+
+真人與 2D 動畫角色自然同框，超寫實街拍攝影結合動畫角色，日系街頭自拍感，社群短影音封面感，9:16 直幅，高細節。</div>
+  </section>
+
+  <!-- 木星 -->
+  <section id="jupiter" class="card card-jupiter">
+    <div class="card-header">
+      <div>
+        <div class="card-title">🌿 木星 <span class="card-subtitle">Sailor Jupiter</span></div>
+      </div>
+      <button class="copy-btn" data-target="prompt-jupiter">📋 複製提示詞</button>
+    </div>
+    <div class="prompt-content" id="prompt-jupiter">以我上傳照片中的人物為唯一人物參考，保留原本五官、臉型、眼型、妝感、身形比例與整體本人感，不要美化，不要變成另一個人。
+
+人物穿著《美少女戰士》水手木星經典 Cosplay 服裝：白綠色水手服、粉紅色胸前蝴蝶結、綠色短裙、綠色綁帶短靴、白色長手套。配戴符合角色設定的棕色高馬尾假髮、綠色髮圈、綠色玫瑰造型耳環、綠色 Tiara 頭冠（中央綠色寶石）。
+
+背景是真實日本街景，類似代代木公園周邊、井之頭公園附近商圈或綠意街道。可見樹木、咖啡廳、街燈與行人，整體保持自然寫實街拍氛圍。
+
+人物身旁出現一位原作動畫風格的水手木星角色。維持 1990 年代經典動畫風格、2D 賽璐璐上色、清楚線稿，不是真人、不是真實 Cosplayer。
+
+真人人物拿著手機自拍，動畫木星自然搭著人物肩膀開心大笑，兩人充滿活力地看向鏡頭，呈現陽光爽朗的好友自拍感。
+
+真人與 2D 動畫角色自然同框，超寫實街拍攝影結合動畫角色，日系街頭自拍感，社群短影音封面感，9:16 直幅，高細節。</div>
+  </section>
+
+  <!-- 土星 -->
+  <section id="saturn" class="card card-saturn">
+    <div class="card-header">
+      <div>
+        <div class="card-title">🪐 土星 <span class="card-subtitle">Sailor Saturn</span></div>
+      </div>
+      <button class="copy-btn" data-target="prompt-saturn">📋 複製提示詞</button>
+    </div>
+    <div class="prompt-content" id="prompt-saturn">以我上傳照片中的人物為唯一人物參考。臉部相似度是最高優先，角色還原度其次。
+
+必須完全保留原本五官、眼距、眼型、鼻型、嘴型、臉型、下顎線條、眉型、妝感、膚質與整體本人辨識度。只允許更換 Cosplay 服裝、頭飾與角色假髮，不得改變臉部結構，不得套用 AI 美女臉，不得年輕化，不得變成另一個人。
+
+人物穿著《美少女戰士》水手土星經典 1990 年代動畫版 Cosplay 服裝：白色水手服、紫色水手領、深紫色胸前蝴蝶結，胸前中央是紫色愛心胸針，紫色短裙、白色長手套、紫色長靴。
+
+配戴符合原作土萌螢設定的深紫黑色短髮假髮，髮長約下巴到肩膀之間，厚瀏海、髮尾微微內彎，髮色接近黑色但帶紫色高光。不要長髮、不要韓系鮑伯、不要偶像感蓬鬆短髮。
+
+配戴細版金色 Tiara 頭冠，中央是小型紫色寶石，不要巨大寶石頭冠。耳朵配戴小型紫色耳飾。配戴紫色項圈，項圈中央必須有清楚可見的金色五角星吊飾，不可省略。胸口只保留紫色愛心胸針，不要銀色星耀胸章，不要額外巨大胸口裝飾，不要自行修改胸針造型。
+
+背景是真實日本街景，類似下北澤夜晚街區、吉祥寺巷弄或東京文青商圈夜景。可見街燈、小店招牌、行人與夜間城市氛圍，整體保持真實街拍感，不要奇幻背景。
+
+人物身旁出現一位原作動畫風格的水手土星角色。維持 1990 年代經典動畫風格、2D 賽璐璐上色、清楚線稿、原作配色。她必須是動畫角色，不是真人，不是真實 Cosplayer。
+
+真人人物伸手拿著手機自拍。動畫土星自然靠近人物肩膀，微微向鏡頭前傾，頭部靠近人物，輕輕揮手，表情安靜溫柔。兩人頭部距離非常接近，像熟識好友共同自拍。
+
+動畫角色必須像真實好友一樣參與自拍互動，不是站在旁邊被後製貼上的角色。真人與動畫角色共享相同光線方向、相同環境光與相同鏡頭透視。
+
+超寫實街拍攝影、自然膚質、高細節服裝與配件、日系街頭自拍感、社群短影音封面感、9:16 直幅、高品質攝影。</div>
+  </section>
+
+  <!-- 海王星 -->
+  <section id="neptune" class="card card-neptune">
+    <div class="card-header">
+      <div>
+        <div class="card-title">🌊 海王星 <span class="card-subtitle">Sailor Neptune</span></div>
+      </div>
+      <button class="copy-btn" data-target="prompt-neptune">📋 複製提示詞</button>
+    </div>
+    <div class="prompt-content" id="prompt-neptune">以我上傳照片中的人物為唯一人物參考，保留原本五官、臉型、眼型、妝感、身形比例與整體本人感，不要美化，不要變成另一個人。
+
+人物穿著《美少女戰士》水手海王星經典 Cosplay 服裝：白色水手服、湖水綠水手領、深藍色胸前蝴蝶結、湖水綠短裙、白色長手套、湖水綠高跟鞋。
+
+配戴符合角色設定的湖水綠波浪短髮假髮、湖水綠 Tiara 頭冠（中央深藍色寶石）、金色星形耳環、深藍色項圈。
+
+背景是真實日本港區夜景，類似橫濱港未來、台場海濱或神戶港夜景步道。可見海面倒影、玻璃帷幕大樓、街燈與夜間行人，整體保持真實街拍氛圍。
+
+人物身旁出現一位原作動畫風格的水手海王星角色，維持 1990 年代經典動畫風格、2D 賽璐璐上色、清楚線稿、原作配色，不是真人、不是真實 Cosplayer。
+
+真人人物伸手拿著手機自拍。
+
+動畫海王星自然將左手輕放在人物肩膀上，身體微微向人物靠近。
+
+自拍前兩人先互相看著對方露出微笑，接著一起看向手機鏡頭。
+
+兩人臉部距離很近，像認識很久的好友。
+
+動畫海王星微微向鏡頭前傾，部分身體進入自拍前景，形成真實自拍構圖。
+
+動畫角色必須像真實好友一樣參與自拍互動，不是站在旁邊被後製貼上的角色。
+
+真人與動畫角色共享相同光線方向、相同夜景環境光與相同鏡頭透視。
+
+超寫實街拍攝影、自然膚質、高細節服裝、電影感光影、9:16 直幅、高品質攝影。</div>
+  </section>
+
+  <!-- 冥王星 -->
+  <section id="pluto" class="card card-pluto">
+    <div class="card-header">
+      <div>
+        <div class="card-title">⏳ 冥王星 <span class="card-subtitle">Sailor Pluto</span></div>
+      </div>
+      <button class="copy-btn" data-target="prompt-pluto">📋 複製提示詞</button>
+    </div>
+    <div class="prompt-content" id="prompt-pluto">以我上傳照片中的人物為唯一人物參考，保留原本五官、臉型、眼型、妝感、身形比例與整體本人感，不要美化，不要變成另一個人。
+
+人物穿著《美少女戰士》水手冥王星經典 Cosplay 服裝：白色水手服、黑色水手領、酒紅色胸前蝴蝶結、黑色短裙、白色長手套、黑色長靴。
+
+配戴符合角色設定的深綠色長髮假髮、黑綠色 Tiara 頭冠（中央深紅色寶石）、金色星形耳環、黑色項圈。
+
+背景是真實日本都市夜景，類似東京丸之內、銀座夜街或高級商業區街道。可見高樓玻璃帷幕、街燈、車流與夜晚城市光影，整體保持成熟神秘的街拍氛圍。
+
+人物身旁出現一位原作動畫風格的水手冥王星角色，維持 1990 年代經典動畫風格、2D 賽璐璐上色、清楚線稿、原作配色，不是真人、不是真實 Cosplayer。
+
+真人人物伸手拿著手機自拍。
+
+動畫冥王星自然站在人物身旁，身體微微向人物方向靠近。
+
+動畫冥王星一隻手輕搭人物上臂，另一手自然垂放。
+
+自拍前兩人短暫互看一眼並露出微笑，接著一起看向手機鏡頭。
+
+動畫冥王星微微低頭靠近鏡頭，人物則自然向她靠近。
+
+兩人頭部距離非常接近，像熟識好友共同自拍。
+
+動畫角色必須像真實好友一樣參與自拍互動，不是站在旁邊被後製貼上的角色。
+
+真人與動畫角色共享相同光線方向、相同夜景環境光與相同鏡頭透視。
+
+超寫實街拍攝影、自然膚質、高細節服裝、電影感光影、9:16 直幅、高品質攝影。</div>
+  </section>
+
+  <!-- 天王星 -->
+  <section id="uranus" class="card card-uranus">
+    <div class="card-header">
+      <div>
+        <div class="card-title">⚡ 天王星 <span class="card-subtitle">Sailor Uranus</span></div>
+      </div>
+      <button class="copy-btn" data-target="prompt-uranus">📋 複製提示詞</button>
+    </div>
+    <div class="prompt-content" id="prompt-uranus">以我上傳照片中的人物為唯一人物參考，保留原本五官、臉型、眼型、妝感、身形比例與整體本人感，不要美化，不要變成另一個人。
+
+人物穿著《美少女戰士》水手天王星經典 Cosplay 服裝：白色水手服、深藍色水手領、黃色胸前蝴蝶結、深藍色短裙、白色長手套、深藍色短靴。配戴符合角色設定的金色短髮假髮、金色 Tiara 頭冠（中央藍色寶石）、小型耳飾。
+
+背景是真實日本街景，類似東京灣岸、代官山街道或高級跑車旁的都市街景。可見街燈、玻璃建築、停靠車輛與行人，整體保持俐落帥氣的街拍氛圍。
+
+人物身旁出現一位原作動畫風格的水手天王星角色。維持 1990 年代經典動畫風格、2D 賽璐璐上色、清楚線稿，不是真人、不是真實 Cosplayer。
+
+真人人物拿著手機以微低角度自拍，動畫天王星單手插腰、冷靜帥氣地看向鏡頭，兩人姿勢俐落，呈現高冷帥氣的跨次元自拍感。動畫天王星自然將手搭在人物肩膀上，兩人同時看向手機鏡頭。
+
+真人與 2D 動畫角色自然同框，超寫實街拍攝影結合動畫角色，日系街頭自拍感，社群短影音封面感，9:16 直幅，高細節。</div>
+  </section>
+
+</div>
+
+<!-- 回到頂端 -->
+<button class="back-to-top" id="backToTop" title="回到頂端">↑</button>
+
+<!-- Toast 訊息 -->
+<div class="toast" id="toast">已複製到剪貼簿 ✨</div>
+
+<script>
+  // 複製功能
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const targetId = btn.getAttribute('data-target');
+      const text = document.getElementById(targetId).innerText;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('已複製到剪貼簿 ✨');
+        btn.classList.add('copied');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✅ 已複製';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = originalText;
+        }, 1800);
+      } catch (err) {
+        // Fallback for older browsers / restricted contexts
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          showToast('已複製到剪貼簿 ✨');
+          btn.classList.add('copied');
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '✅ 已複製';
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.innerHTML = originalText;
+          }, 1800);
+        } catch (e) {
+          showToast('複製失敗，請手動選取');
+        }
+        document.body.removeChild(ta);
+      }
+    });
+  });
+
+  // Toast
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => toast.classList.remove('show'), 1800);
+  }
+
+  // 回到頂端
+  const backBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      backBtn.classList.add('visible');
+    } else {
+      backBtn.classList.remove('visible');
+    }
+  });
+  backBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // 平滑捲動
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const id = link.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
